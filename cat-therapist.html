@@ -45,8 +45,9 @@
             overflow: hidden;
         }
         
-        /* 登录页面样式 */
-        .login-container {
+        /* 页面容器 */
+        .page-container {
+            display: none;
             max-width: 500px;
             width: 100%;
             background: white;
@@ -57,10 +58,11 @@
             z-index: 2;
             border: 1px solid var(--border);
             animation: fadeInUp 0.8s ease-out;
-            display: flex;
             flex-direction: column;
+            height: 95vh;
         }
         
+        /* 登录页面 */
         .login-header {
             background: linear-gradient(135deg, var(--primary), #FFB38A);
             color: white;
@@ -214,50 +216,8 @@
             opacity: 1;
         }
         
-        .animal-bg {
-            position: absolute;
-            opacity: 0.05;
-            pointer-events: none;
-            z-index: 0;
-            font-size: 200px;
-        }
-        
-        .bg-cat { top: 50px; right: 50px; color: #FF9E6D; animation: float 8s infinite ease-in-out; }
-        .bg-dog { bottom: 50px; left: 50px; color: #7FC8A9; animation: float 9s infinite ease-in-out 1s; }
-        .bg-owl { top: 150px; left: 100px; color: #5A7FCC; animation: float 10s infinite ease-in-out 2s; }
-        .bg-dolphin { bottom: 100px; right: 100px; color: #4DB4D7; animation: float 7s infinite ease-in-out 3s; }
-        .bg-panda { top: 100px; left: 300px; color: #5A5A5A; animation: float 11s infinite ease-in-out 0.5s; }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); }
-            25% { transform: translateY(-20px) translateX(10px) rotate(5deg); }
-            50% { transform: translateY(10px) translateX(-15px) rotate(-5deg); }
-            75% { transform: translateY(-15px) translateX(-5px) rotate(3deg); }
-        }
-        
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        /* 主应用容器 - 初始隐藏 */
-        .app-container {
-            display: none;
-            max-width: 1200px;
-            width: 100%;
-            margin: 0 auto;
-            background: white;
-            border-radius: 24px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-            overflow: hidden;
-            flex-direction: column;
-            height: 95vh;
-            position: relative;
-            border: 1px solid var(--border);
-            animation: fadeIn 0.8s ease-out;
-        }
-        
-        .header {
+        /* 动物选择页面 */
+        .animal-selection-page .header {
             background: linear-gradient(135deg, var(--primary), #FFB38A);
             color: white;
             padding: 22px 35px;
@@ -350,16 +310,9 @@
             margin-left: 5px;
         }
         
-        .main-content {
-            display: flex;
-            flex: 1;
-            overflow: hidden;
-        }
-        
         .animal-selector {
-            width: 280px;
+            flex: 1;
             background: var(--light);
-            border-right: 1px solid var(--border);
             padding: 25px;
             display: flex;
             flex-direction: column;
@@ -451,13 +404,37 @@
             line-height: 1.5;
         }
         
-        .chat-container {
-            flex: 1;
+        .select-button {
+            padding: 16px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border: none;
+            border-radius: 18px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(255, 158, 109, 0.3);
+            font-weight: 500;
+            margin: 20px 25px;
+        }
+        
+        .select-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 158, 109, 0.4);
+        }
+        
+        .select-button i {
+            margin-right: 10px;
+        }
+        
+        /* 聊天页面 */
+        .chat-page {
             display: flex;
             flex-direction: column;
-            overflow: hidden;
-            background: var(--light);
-            position: relative;
+            height: 100%;
         }
         
         .chat-header {
@@ -467,11 +444,34 @@
             align-items: center;
             background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(5px);
+            justify-content: space-between;
+        }
+        
+        .back-button {
+            background: var(--light);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text);
+            font-size: 18px;
+            transition: all 0.3s;
+            margin-right: 15px;
+        }
+        
+        .back-button:hover {
+            background: var(--primary-light);
+            transform: translateX(-3px);
         }
         
         .current-animal {
             display: flex;
             align-items: center;
+            flex: 1;
         }
         
         .current-animal-icon {
@@ -789,17 +789,33 @@
             box-shadow: 0 8px 20px rgba(255, 158, 109, 0.4);
         }
         
-        /* 响应式设计 */
-        @media (max-width: 1024px) {
-            .animal-selector {
-                width: 220px;
-            }
-            
-            .app-container {
-                height: 95vh;
-            }
+        .animal-bg {
+            position: absolute;
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 0;
+            font-size: 200px;
         }
         
+        .bg-cat { top: 50px; right: 50px; color: #FF9E6D; animation: float 8s infinite ease-in-out; }
+        .bg-dog { bottom: 50px; left: 50px; color: #7FC8A9; animation: float 9s infinite ease-in-out 1s; }
+        .bg-owl { top: 150px; left: 100px; color: #5A7FCC; animation: float 10s infinite ease-in-out 2s; }
+        .bg-dolphin { bottom: 100px; right: 100px; color: #4DB4D7; animation: float 7s infinite ease-in-out 3s; }
+        .bg-panda { top: 100px; left: 300px; color: #5A5A5A; animation: float 11s infinite ease-in-out 0.5s; }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); }
+            25% { transform: translateY(-20px) translateX(10px) rotate(5deg); }
+            50% { transform: translateY(10px) translateX(-15px) rotate(-5deg); }
+            75% { transform: translateY(-15px) translateX(-5px) rotate(3deg); }
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* 响应式设计 */
         @media (max-width: 768px) {
             .login-form {
                 padding: 30px 25px;
@@ -811,21 +827,6 @@
             
             .login-header h1 {
                 font-size: 26px;
-            }
-            
-            .main-content {
-                flex-direction: column;
-            }
-            
-            .animal-selector {
-                width: 100%;
-                max-height: 250px;
-                border-right: none;
-                border-bottom: 1px solid var(--border);
-            }
-            
-            .header {
-                padding: 18px;
             }
             
             .header h1 {
@@ -854,6 +855,12 @@
                 padding: 6px 12px;
                 font-size: 13px;
             }
+            
+            .page-container {
+                height: 100vh;
+                max-width: 100%;
+                border-radius: 0;
+            }
         }
         
         .chat-messages::-webkit-scrollbar {
@@ -873,11 +880,55 @@
         .chat-messages::-webkit-scrollbar-thumb:hover {
             background: var(--primary);
         }
+        
+        /* 分页导航按钮 */
+        .page-nav {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            background: var(--light);
+            border-top: 1px solid var(--border);
+        }
+        
+        .nav-btn {
+            padding: 12px 25px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border: none;
+            border-radius: 18px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(255, 158, 109, 0.3);
+            font-weight: 500;
+        }
+        
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 158, 109, 0.4);
+        }
+        
+        .nav-btn i {
+            margin-right: 8px;
+        }
+        
+        .nav-btn.back {
+            background: var(--light);
+            color: var(--text);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+        
+        .nav-btn.back:hover {
+            background: var(--primary-light);
+        }
     </style>
 </head>
 <body>
     <!-- 登录页面 -->
-    <div class="login-container" id="loginPage">
+    <div class="page-container" id="loginPage">
         <div class="login-header">
             <div class="login-logo">
                 <i class="fas fa-heart"></i>
@@ -915,8 +966,8 @@
         </div>
     </div>
     
-    <!-- 主应用页面 - 初始隐藏 -->
-    <div class="app-container" id="appContainer">
+    <!-- 动物选择页面 -->
+    <div class="page-container" id="animalSelectionPage">
         <div class="header">
             <div class="logo">
                 <i class="fas fa-heart"></i>
@@ -935,164 +986,140 @@
             紧急情况请拨打心理援助热线 <a href="tel:010-82951332">010-82951332</a>
         </div>
         
-        <div class="main-content">
-            <div class="animal-selector">
-                <div class="section-title">
-                    <i class="fas fa-paw"></i> 选择心灵伙伴
+        <div class="animal-selector">
+            <div class="section-title">
+                <i class="fas fa-paw"></i> 选择心灵伙伴
+            </div>
+            
+            <div class="animal-options">
+                <div class="animal-card active" data-animal="cat">
+                    <div class="animal-icon cat-icon">
+                        <i class="fas fa-cat"></i>
+                    </div>
+                    <div class="animal-info">
+                        <h3>猫咪心理师</h3>
+                        <p>温柔治愈，独立而富有同理心</p>
+                    </div>
                 </div>
                 
-                <div class="animal-options">
-                    <div class="animal-card active" data-animal="cat">
-                        <div class="animal-icon cat-icon">
-                            <i class="fas fa-cat"></i>
-                        </div>
-                        <div class="animal-info">
-                            <h3>猫咪心理师</h3>
-                            <p>温柔治愈，独立而富有同理心</p>
-                        </div>
+                <div class="animal-card" data-animal="dog">
+                    <div class="animal-icon dog-icon">
+                        <i class="fas fa-dog"></i>
                     </div>
-                    
-                    <div class="animal-card" data-animal="dog">
-                        <div class="animal-icon dog-icon">
-                            <i class="fas fa-dog"></i>
-                        </div>
-                        <div class="animal-info">
-                            <h3>狗狗心理师</h3>
-                            <p>忠诚热情，积极互动</p>
-                        </div>
+                    <div class="animal-info">
+                        <h3>狗狗心理师</h3>
+                        <p>忠诚热情，积极互动</p>
                     </div>
-                    
-                    <div class="animal-card" data-animal="owl">
-                        <div class="animal-icon owl-icon">
-                            <i class="fas fa-kiwi-bird"></i>
-                        </div>
-                        <div class="animal-info">
-                            <h3>猫头鹰心理师</h3>
-                            <p>智慧洞察，沉稳理性</p>
-                        </div>
+                </div>
+                
+                <div class="animal-card" data-animal="owl">
+                    <div class="animal-icon owl-icon">
+                        <i class="fas fa-kiwi-bird"></i>
                     </div>
-                    
-                    <div class="animal-card" data-animal="dolphin">
-                        <div class="animal-icon dolphin-icon">
-                            <i class="fas fa-fish"></i>
-                        </div>
-                        <div class="animal-info">
-                            <h3>海豚心理师</h3>
-                            <p>友善治愈，注重群体联结</p>
-                        </div>
+                    <div class="animal-info">
+                        <h3>猫头鹰心理师</h3>
+                        <p>智慧洞察，沉稳理性</p>
                     </div>
-                    
-                    <div class="animal-card" data-animal="panda">
-                        <div class="animal-icon panda-icon">
-                            <i class="fas fa-paw"></i>
-                        </div>
-                        <div class="animal-info">
-                            <h3>熊猫心理师</h3>
-                            <p>温和无争，平静治愈</p>
-                        </div>
+                </div>
+                
+                <div class="animal-card" data-animal="dolphin">
+                    <div class="animal-icon dolphin-icon">
+                        <i class="fas fa-fish"></i>
+                    </div>
+                    <div class="animal-info">
+                        <h3>海豚心理师</h3>
+                        <p>友善治愈，注重群体联结</p>
+                    </div>
+                </div>
+                
+                <div class="animal-card" data-animal="panda">
+                    <div class="animal-icon panda-icon">
+                        <i class="fas fa-paw"></i>
+                    </div>
+                    <div class="animal-info">
+                        <h3>熊猫心理师</h3>
+                        <p>温和无争，平静治愈</p>
                     </div>
                 </div>
             </div>
             
-            <div class="chat-container">
-                <div class="chat-header">
-                    <div class="current-animal">
-                        <div class="current-animal-icon cat-icon">
+            <button class="select-button" id="selectAnimalBtn">
+                <i class="fas fa-paw"></i> 开始对话
+            </button>
+        </div>
+    </div>
+    
+    <!-- 聊天页面 -->
+    <div class="page-container" id="chatPage">
+        <div class="chat-page">
+            <div class="chat-header">
+                <button class="back-button" id="backToSelectionBtn">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <div class="current-animal">
+                    <div class="current-animal-icon cat-icon">
+                        <i class="fas fa-cat"></i>
+                    </div>
+                    <div class="current-animal-info">
+                        <h3>猫咪心理师</h3>
+                        <p>温柔治愈，独立而富有同理心</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chat-messages" id="chatContainer">
+                <div class="message ai-message">
+                    <div class="message-header">
+                        <div class="avatar ai-avatar">
                             <i class="fas fa-cat"></i>
                         </div>
-                        <div class="current-animal-info">
-                            <h3>猫咪心理师</h3>
-                            <p>温柔治愈，独立而富有同理心</p>
+                        <div class="message-info">
+                            猫咪心理师 <span>刚刚</span>
                         </div>
+                    </div>
+                    <div class="message-content">
+                        <p>喵～我是你的猫咪心理师，一个温柔而独立的伙伴。</p>
+                        <p>在这里，你可以自由表达内心的感受，我会用温暖而专业的方式陪伴你。</p>
+                        <p>无论你面临什么情绪挑战，我都会在这里倾听和支持你～</p>
                     </div>
                 </div>
                 
-                <div class="chat-messages" id="chatContainer">
-                    <div class="message ai-message">
-                        <div class="message-header">
-                            <div class="avatar ai-avatar">
-                                <i class="fas fa-cat"></i>
-                            </div>
-                            <div class="message-info">
-                                猫咪心理师 <span>刚刚</span>
-                            </div>
-                        </div>
-                        <div class="message-content">
-                            <p>喵～我是你的猫咪心理师，一个温柔而独立的伙伴。</p>
-                            <p>在这里，你可以自由表达内心的感受，我会用温暖而专业的方式陪伴你。</p>
-                            <p>无论你面临什么情绪挑战，我都会在这里倾听和支持你～</p>
-                        </div>
-                    </div>
-                    
-                    <div class="typing-indicator" id="typingIndicator" style="display: none;">
-                        <div class="dot"></div>
-                        <div class="dot"></div>
-                        <div class="dot"></div>
-                        <span style="margin-left:12px;font-size:15px;color:var(--text-light);">思考中...</span>
-                    </div>
+                <div class="typing-indicator" id="typingIndicator" style="display: none;">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <span style="margin-left:12px;font-size:15px;color:var(--text-light);">思考中...</span>
                 </div>
-                
-                <!-- 快速建议区域 -->
-                <div class="quick-suggestions" id="quickSuggestions">
-                    <button class="suggestion-btn" data-text="我感到焦虑">我感到焦虑</button>
-                    <button class="suggestion-btn" data-text="我最近压力很大">我最近压力很大</button>
-                    <button class="suggestion-btn" data-text="我睡不好">我睡不好</button>
-                    <button class="suggestion-btn" data-text="我感到孤独">我感到孤独</button>
-                    <button class="suggestion-btn resource" data-text="压力管理小技巧">压力管理小技巧</button>
-                    <button class="suggestion-btn resource" data-text="睡前放松练习">睡前放松练习</button>
-                </div>
-                
-                <div class="input-area">
-                    <textarea id="messageInput" placeholder="请分享你的感受或想法...（按Enter发送）" autocomplete="off"></textarea>
-                    <button id="sendButton">
-                        <i class="fas fa-paper-plane"></i> 发送
-                    </button>
-                </div>
+            </div>
+            
+            <!-- 快速建议区域 -->
+            <div class="quick-suggestions" id="quickSuggestions">
+                <button class="suggestion-btn" data-text="我感到焦虑">我感到焦虑</button>
+                <button class="suggestion-btn" data-text="我最近压力很大">我最近压力很大</button>
+                <button class="suggestion-btn" data-text="我睡不好">我睡不好</button>
+                <button class="suggestion-btn" data-text="我感到孤独">我感到孤独</button>
+                <button class="suggestion-btn resource" data-text="压力管理小技巧">压力管理小技巧</button>
+                <button class="suggestion-btn resource" data-text="睡前放松练习">睡前放松练习</button>
+            </div>
+            
+            <div class="input-area">
+                <textarea id="messageInput" placeholder="请分享你的感受或想法...（按Enter发送）" autocomplete="off"></textarea>
+                <button id="sendButton">
+                    <i class="fas fa-paper-plane"></i> 发送
+                </button>
             </div>
         </div>
-        
-        <i class="fas fa-cat animal-bg bg-cat"></i>
-        <i class="fas fa-dog animal-bg bg-dog"></i>
-        <i class="fas fa-kiwi-bird animal-bg bg-owl"></i>
-        <i class="fas fa-fish animal-bg bg-dolphin"></i>
-        <i class="fas fa-paw animal-bg bg-panda"></i>
     </div>
 
+    <i class="fas fa-cat animal-bg bg-cat"></i>
+    <i class="fas fa-dog animal-bg bg-dog"></i>
+    <i class="fas fa-kiwi-bird animal-bg bg-owl"></i>
+    <i class="fas fa-fish animal-bg bg-dolphin"></i>
+    <i class="fas fa-paw animal-bg bg-panda"></i>
+
     <script>
-        // 登录验证
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const errorMessage = document.getElementById('errorMessage');
-            
-            // 清除之前的错误信息
-            errorMessage.classList.remove('show');
-            
-            // 正确的凭据
-            const correctUsername = 'client00228';
-            const correctPassword = 'a12345678';
-            
-            if (username === correctUsername && password === correctPassword) {
-                // 登录成功
-                document.getElementById('loginPage').style.display = 'none';
-                document.getElementById('appContainer').style.display = 'flex';
-                
-                // 添加欢迎消息
-                addWelcomeMessage();
-            } else {
-                // 显示错误信息
-                errorMessage.textContent = '账号或密码错误，请重试';
-                errorMessage.classList.add('show');
-                
-                // 添加抖动效果
-                document.getElementById('loginForm').classList.add('shake');
-                setTimeout(() => {
-                    document.getElementById('loginForm').classList.remove('shake');
-                }, 500);
-            }
-        });
+        // 初始显示登录页面
+        document.getElementById('loginPage').style.display = 'flex';
         
         // 动物角色配置
         const animalRoles = {
@@ -1245,12 +1272,58 @@
         
         // 初始化
         document.addEventListener('DOMContentLoaded', function() {
+            // 登录验证
+            document.getElementById('loginForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+                const errorMessage = document.getElementById('errorMessage');
+                
+                // 清除之前的错误信息
+                errorMessage.classList.remove('show');
+                
+                // 正确的凭据
+                const correctUsername = 'client00228';
+                const correctPassword = 'a12345678';
+                
+                if (username === correctUsername && password === correctPassword) {
+                    // 登录成功，切换到动物选择页
+                    showPage('animalSelectionPage');
+                    
+                    // 添加欢迎消息
+                    addWelcomeMessage();
+                } else {
+                    // 显示错误信息
+                    errorMessage.textContent = '账号或密码错误，请重试';
+                    errorMessage.classList.add('show');
+                    
+                    // 添加抖动效果
+                    document.getElementById('loginForm').classList.add('shake');
+                    setTimeout(() => {
+                        document.getElementById('loginForm').classList.remove('shake');
+                    }, 500);
+                }
+            });
+            
             // 动物选择事件
             document.querySelectorAll('.animal-card').forEach(card => {
                 card.addEventListener('click', function() {
                     const animal = this.dataset.animal;
                     selectAnimal(animal);
                 });
+            });
+            
+            // 选择动物按钮
+            document.getElementById('selectAnimalBtn').addEventListener('click', function() {
+                showPage('chatPage');
+                // 添加初始问候
+                addMessage('ai', `喵～我是你的${animalRoles[currentAnimal].name}！${animalRoles[currentAnimal].description}，现在可以和我分享你的感受了～`);
+            });
+            
+            // 返回选择页面按钮
+            document.getElementById('backToSelectionBtn').addEventListener('click', function() {
+                showPage('animalSelectionPage');
             });
             
             // 发送按钮事件
@@ -1273,6 +1346,23 @@
                 });
             });
         });
+        
+        // 显示特定页面
+        function showPage(pageId) {
+            // 隐藏所有页面
+            document.querySelectorAll('.page-container').forEach(page => {
+                page.style.display = 'none';
+            });
+            
+            // 显示指定页面
+            document.getElementById(pageId).style.display = 'flex';
+            
+            // 滚动到底部
+            if (pageId === 'chatPage') {
+                const chatContainer = document.getElementById('chatContainer');
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }
+        }
         
         // 添加欢迎消息
         function addWelcomeMessage() {
@@ -1325,9 +1415,6 @@
             
             // 更新系统提示词
             conversationHistory[0] = { role: "system", content: role.systemPrompt };
-            
-            // 添加切换通知
-            addMessage('ai', `已切换到${role.name}模式！${role.description}，现在可以和我分享你的感受了～`);
         }
         
         // 发送消息
