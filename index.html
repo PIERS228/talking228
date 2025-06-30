@@ -3,84 +3,292 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>猫猫心理师 - 与猫咪倾诉心声</title>
+    <title>喵语心坊 - 多角色动物心理师</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            font-family: 'Noto Sans SC', 'Segoe UI', 'Microsoft YaHei', sans-serif;
         }
         
         :root {
             --primary: #FF9E6D;
+            --primary-light: #FFD8BF;
             --primary-dark: #E07A54;
-            --secondary: #FFD8BF;
+            --secondary: #7FC8A9;
             --light: #FFF9F5;
-            --accent: #7FC8A9;
+            --light-alt: #FFF5EF;
             --text: #5A4A42;
             --text-light: #A08E84;
             --success: #7FC8A9;
             --warning: #FFD166;
             --danger: #FF6B6B;
-            --border: #E8D5CC;
+            --border: #F0E4DD;
             --shadow: rgba(0, 0, 0, 0.05);
+            --shadow-dark: rgba(0, 0, 0, 0.08);
+            --login-bg: #faf3ee;
         }
         
         body {
-            background: linear-gradient(135deg, #FFF9F5, #FFF0E6);
-            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffd8bf' fill-opacity='0.2' fill-rule='evenodd'/%3E%3C/svg%3E");
+            background: linear-gradient(135deg, #f9f4f0, #f0e8e1);
             color: var(--text);
             line-height: 1.6;
             min-height: 100vh;
-            padding: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
         }
         
-        .container {
-            max-width: 900px;
+        /* 登录页面样式 */
+        .login-container {
+            max-width: 500px;
+            width: 100%;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            position: relative;
+            z-index: 2;
+            border: 1px solid var(--border);
+            animation: fadeInUp 0.8s ease-out;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .login-header {
+            background: linear-gradient(135deg, var(--primary), #FFB38A);
+            color: white;
+            padding: 40px 35px 30px;
+            text-align: center;
+            position: relative;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .login-logo {
+            background: white;
+            width: 80px;
+            height: 80px;
+            border-radius: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 2px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        .login-logo:hover {
+            transform: rotate(-5deg);
+        }
+        
+        .login-logo i {
+            color: var(--primary);
+            font-size: 42px;
+        }
+        
+        .login-header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+            letter-spacing: -0.5px;
+        }
+        
+        .login-header p {
+            font-size: 18px;
+            opacity: 0.92;
+            font-weight: 400;
+            max-width: 100%;
+        }
+        
+        .login-form {
+            padding: 40px 50px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+        
+        .input-with-icon {
+            position: relative;
+        }
+        
+        .input-with-icon i {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary);
+            font-size: 18px;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 16px 22px 16px 52px;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            outline: none;
+            font-size: 16px;
+            background: var(--light-alt);
+            color: var(--text);
+            box-shadow: inset 0 3px 6px rgba(0,0,0,0.03);
+            font-weight: 400;
+            transition: all 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(255, 158, 109, 0.15), inset 0 3px 6px rgba(0,0,0,0.03);
+        }
+        
+        .login-btn {
+            padding: 16px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border: none;
+            border-radius: 18px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(255, 158, 109, 0.3);
+            font-weight: 500;
+            margin-top: 10px;
+        }
+        
+        .login-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 158, 109, 0.4);
+        }
+        
+        .login-btn i {
+            margin-right: 10px;
+        }
+        
+        .login-footer {
+            padding: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-light);
+            background: var(--light);
+            border-top: 1px solid var(--border);
+        }
+        
+        .login-footer a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .error-message {
+            color: var(--danger);
+            font-size: 14px;
+            margin-top: 8px;
+            text-align: center;
+            height: 20px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .error-message.show {
+            opacity: 1;
+        }
+        
+        .animal-bg {
+            position: absolute;
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 0;
+            font-size: 200px;
+        }
+        
+        .bg-cat { top: 50px; right: 50px; color: #FF9E6D; animation: float 8s infinite ease-in-out; }
+        .bg-dog { bottom: 50px; left: 50px; color: #7FC8A9; animation: float 9s infinite ease-in-out 1s; }
+        .bg-owl { top: 150px; left: 100px; color: #5A7FCC; animation: float 10s infinite ease-in-out 2s; }
+        .bg-dolphin { bottom: 100px; right: 100px; color: #4DB4D7; animation: float 7s infinite ease-in-out 3s; }
+        .bg-panda { top: 100px; left: 300px; color: #5A5A5A; animation: float 11s infinite ease-in-out 0.5s; }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); }
+            25% { transform: translateY(-20px) translateX(10px) rotate(5deg); }
+            50% { transform: translateY(10px) translateX(-15px) rotate(-5deg); }
+            75% { transform: translateY(-15px) translateX(-5px) rotate(3deg); }
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* 主应用容器 - 初始隐藏 */
+        .app-container {
+            display: none;
+            max-width: 1200px;
             width: 100%;
             margin: 0 auto;
             background: white;
-            border-radius: 20px;
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
             overflow: hidden;
-            display: flex;
             flex-direction: column;
-            height: 90vh;
+            height: 95vh;
             position: relative;
             border: 1px solid var(--border);
+            animation: fadeIn 0.8s ease-out;
         }
         
         .header {
             background: linear-gradient(135deg, var(--primary), #FFB38A);
             color: white;
-            padding: 20px 30px;
+            padding: 22px 35px;
             display: flex;
             align-items: center;
             position: relative;
-            border-bottom: 2px solid var(--primary-dark);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
         
         .logo {
             background: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            border-radius: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-right: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             border: 2px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: rotate(-5deg);
         }
         
         .logo i {
             color: var(--primary);
-            font-size: 28px;
+            font-size: 32px;
         }
         
         .header-content {
@@ -88,42 +296,46 @@
         }
         
         .header h1 {
-            font-size: 26px;
+            font-size: 30px;
             font-weight: 700;
-            margin-bottom: 5px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            margin-bottom: 6px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+            letter-spacing: -0.5px;
         }
         
         .header p {
-            font-size: 15px;
-            opacity: 0.95;
+            font-size: 17px;
+            opacity: 0.92;
             font-weight: 400;
+            max-width: 600px;
         }
         
         .disclaimer {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 12px;
-            margin-top: 8px;
+            background: rgba(255, 255, 255, 0.25);
+            padding: 10px 16px;
+            border-radius: 14px;
+            font-size: 13px;
+            margin-top: 10px;
             display: inline-block;
-            backdrop-filter: blur(2px);
-            border: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255,255,255,0.15);
+            font-weight: 400;
         }
         
         .crisis-alert {
             background: #fff8f8;
             border: 1px solid #ffd1d1;
-            border-radius: 10px;
+            border-radius: 14px;
             padding: 15px;
-            margin: 15px 20px;
+            margin: 18px 25px;
             text-align: center;
             color: var(--danger);
             font-size: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            font-weight: 500;
         }
         
         .crisis-alert i {
@@ -134,109 +346,109 @@
         .crisis-alert a {
             color: var(--danger);
             text-decoration: underline;
-            font-weight: 500;
+            font-weight: 600;
             margin-left: 5px;
         }
         
-        .chat-area {
+        .main-content {
             display: flex;
             flex: 1;
             overflow: hidden;
         }
         
-        .tools-sidebar {
-            width: 220px;
+        .animal-selector {
+            width: 280px;
             background: var(--light);
             border-right: 1px solid var(--border);
-            padding: 20px;
+            padding: 25px;
             display: flex;
             flex-direction: column;
             overflow-y: auto;
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffd8bf' fill-opacity='0.15'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
         
-        .tools-title {
-            font-size: 16px;
+        .section-title {
+            font-size: 18px;
             font-weight: 600;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             color: var(--primary);
             display: flex;
             align-items: center;
-            padding: 8px 12px;
+            padding: 10px 15px;
             background: rgba(255, 158, 109, 0.1);
-            border-radius: 10px;
-        }
-        
-        .tools-title i {
-            margin-right: 8px;
-            font-size: 18px;
-        }
-        
-        .therapy-type {
-            background: white;
             border-radius: 14px;
-            padding: 15px;
-            margin-bottom: 15px;
-            box-shadow: 0 4px 8px var(--shadow);
+        }
+        
+        .section-title i {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        
+        .animal-options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .animal-card {
+            background: white;
+            border-radius: 18px;
+            padding: 20px;
+            box-shadow: 0 4px 10px var(--shadow);
             cursor: pointer;
             transition: all 0.3s;
             border: 2px solid transparent;
             position: relative;
             overflow: hidden;
+            display: flex;
+            align-items: center;
         }
         
-        .therapy-type:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+        .animal-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
         }
         
-        .therapy-type.active {
+        .animal-card.active {
             border-color: var(--primary);
             background: #FFF5EF;
+            box-shadow: 0 6px 15px rgba(255, 158, 109, 0.2);
         }
         
-        .therapy-type h3 {
-            font-size: 15px;
-            margin-bottom: 8px;
-            color: var(--text);
+        .animal-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 24px;
+            color: white;
+            flex-shrink: 0;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
         }
         
-        .therapy-type h3 i {
-            margin-right: 8px;
-            color: var(--primary);
+        .cat-icon { background: #FF9E6D; }
+        .dog-icon { background: #7FC8A9; }
+        .owl-icon { background: #5A7FCC; }
+        .dolphin-icon { background: #4DB4D7; }
+        .panda-icon { background: #5A5A5A; }
+        
+        .animal-info {
+            flex: 1;
         }
         
-        .therapy-type p {
+        .animal-info h3 {
+            font-size: 17px;
+            margin-bottom: 5px;
+            color: var(--text);
+        }
+        
+        .animal-info p {
             font-size: 13px;
             color: var(--text-light);
-            padding-left: 24px;
-        }
-        
-        .resources {
-            margin-top: 20px;
-        }
-        
-        .resource-item {
-            padding: 12px 0;
-            border-bottom: 1px solid var(--border);
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            color: var(--text);
-            transition: all 0.2s;
-        }
-        
-        .resource-item:hover {
-            color: var(--primary);
-        }
-        
-        .resource-item i {
-            color: var(--primary);
-            margin-right: 10px;
-            width: 20px;
-            font-size: 16px;
+            line-height: 1.5;
         }
         
         .chat-container {
@@ -244,28 +456,70 @@
             display: flex;
             flex-direction: column;
             overflow: hidden;
-            background: #fcf9f7;
+            background: var(--light);
             position: relative;
+        }
+        
+        .chat-header {
+            padding: 15px 25px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(5px);
+        }
+        
+        .current-animal {
+            display: flex;
+            align-items: center;
+        }
+        
+        .current-animal-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 22px;
+            color: white;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+        }
+        
+        .current-animal-info h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text);
+        }
+        
+        .current-animal-info p {
+            font-size: 14px;
+            color: var(--text-light);
         }
         
         .chat-messages {
             flex: 1;
             overflow-y: auto;
-            padding: 20px;
+            padding: 25px;
             display: flex;
             flex-direction: column;
-            background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffd8bf' fill-opacity='0.1'%3E%3Cpath d='M50 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10-10-4.477-10-10zm15 1h-5v-5h-2v5h-5v2h5v5h2v-5h5v-2zM30 30c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10-10-4.477-10-10zm15 1h-5v-5h-2v5h-5v2h5v5h2v-5h5v-2zM10 10C10 4.477 14.477 0 20 0s10 4.477 10 10-4.477 10-10 10S10 15.523 10 10zm15 1h-5V6h-2v5H6v2h5v5h2v-5h5v-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
         
         .message {
-            margin-bottom: 25px;
-            max-width: 85%;
-            padding: 18px 22px;
+            margin-bottom: 28px;
+            max-width: 80%;
+            padding: 20px 24px;
             border-radius: 22px;
-            line-height: 1.6;
+            line-height: 1.65;
             position: relative;
             animation: fadeIn 0.4s ease-out;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .message:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
         }
         
         @keyframes fadeIn {
@@ -274,38 +528,52 @@
         }
         
         .user-message {
-            background: linear-gradient(135deg, #e3f2fd, #d5e7ff);
+            background: linear-gradient(135deg, #f0f7ff, #e3f0ff);
             margin-left: auto;
-            border-bottom-right-radius: 8px;
+            border-bottom-right-radius: 10px;
+            border-top-right-radius: 22px;
         }
         
         .ai-message {
             background: linear-gradient(135deg, #ffffff, #fffaf7);
             border: 1px solid var(--border);
-            border-bottom-left-radius: 8px;
+            border-bottom-left-radius: 10px;
+            border-top-left-radius: 22px;
+        }
+        
+        .resource-message {
+            background: linear-gradient(135deg, #f8f5ff, #f1edff);
+            border: 1px solid #e6e1ff;
+            border-bottom-left-radius: 10px;
+            border-top-left-radius: 22px;
         }
         
         .message-header {
             display: flex;
             align-items: center;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
         
         .avatar {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 12px;
+            margin-right: 14px;
             font-weight: bold;
             flex-shrink: 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .avatar:hover {
+            transform: scale(1.05);
         }
         
         .user-avatar {
-            background: var(--accent);
+            background: var(--secondary);
             color: white;
         }
         
@@ -314,37 +582,90 @@
             color: white;
         }
         
+        .resource-avatar {
+            background: #8a7fff;
+            color: white;
+        }
+        
         .message-info {
-            font-size: 15px;
+            font-size: 16px;
             font-weight: 600;
         }
         
         .message-info span {
-            font-size: 12px;
+            font-size: 13px;
             font-weight: normal;
             color: var(--text-light);
-            margin-left: 8px;
+            margin-left: 10px;
         }
         
         .message-content {
-            font-size: 15px;
+            font-size: 16px;
             line-height: 1.7;
+            color: var(--text);
         }
         
         .message-content p {
+            margin-bottom: 12px;
+        }
+        
+        .message-content strong {
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+        
+        .resource-content {
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 14px;
+            padding: 15px;
+            margin-top: 10px;
+        }
+        
+        .resource-title {
+            font-size: 17px;
+            font-weight: 600;
+            color: #5a4a42;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .resource-title i {
+            margin-right: 8px;
+            color: #8a7fff;
+        }
+        
+        .resource-details {
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        
+        .resource-details ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        
+        .resource-details li {
             margin-bottom: 8px;
         }
         
         .typing-indicator {
             display: inline-flex;
-            padding: 14px 20px;
+            padding: 16px 22px;
             background: white;
             border: 1px solid var(--border);
             border-radius: 22px;
             margin-bottom: 15px;
-            border-bottom-left-radius: 8px;
+            border-bottom-left-radius: 10px;
             align-items: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.9; }
+            50% { opacity: 0.7; }
+            100% { opacity: 0.9; }
         }
         
         .dot {
@@ -352,7 +673,7 @@
             height: 10px;
             background: var(--primary);
             border-radius: 50%;
-            margin: 0 4px;
+            margin: 0 5px;
         }
         
         .dot:nth-child(1) {
@@ -373,189 +694,319 @@
         }
         
         .input-area {
-            padding: 18px;
+            padding: 20px 25px;
             background: white;
             border-top: 1px solid var(--border);
             display: flex;
-            gap: 12px;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.03);
+            gap: 15px;
+            box-shadow: 0 -3px 15px rgba(0,0,0,0.03);
+            position: relative;
+        }
+        
+        /* 快速建议区域 */
+        .quick-suggestions {
+            padding: 10px 15px;
+            background: white;
+            border-top: 1px solid var(--border);
+            display: flex;
+            overflow-x: auto;
+            gap: 10px;
+            scrollbar-width: none;
+        }
+        
+        .quick-suggestions::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .suggestion-btn {
+            flex: 0 0 auto;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: var(--light);
+            border: 1px solid var(--border);
+            color: var(--text);
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        
+        .suggestion-btn:hover {
+            background: var(--primary-light);
+            border-color: var(--primary);
+        }
+        
+        .suggestion-btn.resource {
+            background: rgba(127, 200, 169, 0.15);
+            border-color: rgba(127, 200, 169, 0.3);
+            color: #3a8a6f;
         }
         
         #messageInput {
             flex: 1;
-            padding: 15px 20px;
+            padding: 16px 22px;
             border: 1px solid var(--border);
-            border-radius: 16px;
+            border-radius: 18px;
             outline: none;
-            font-size: 15px;
+            font-size: 16px;
             resize: none;
-            height: 65px;
+            height: 70px;
             transition: all 0.3s;
-            background: #fffdfb;
+            background: var(--light-alt);
             color: var(--text);
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.03);
+            box-shadow: inset 0 3px 6px rgba(0,0,0,0.03);
+            font-weight: 400;
         }
         
         #messageInput:focus {
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(255, 158, 109, 0.2), inset 0 2px 4px rgba(0,0,0,0.03);
+            box-shadow: 0 0 0 3px rgba(255, 158, 109, 0.15), inset 0 3px 6px rgba(0,0,0,0.03);
+        }
+        
+        #messageInput::placeholder {
+            color: var(--text-light);
+            opacity: 0.7;
         }
         
         #sendButton {
-            padding: 0 28px;
+            padding: 0 30px;
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
             border: none;
-            border-radius: 16px;
+            border-radius: 18px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 17px;
             transition: all 0.3s;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 12px rgba(255, 158, 109, 0.3);
+            box-shadow: 0 5px 15px rgba(255, 158, 109, 0.3);
+            font-weight: 500;
         }
         
         #sendButton:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(255, 158, 109, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 158, 109, 0.4);
         }
         
-        .suggestions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            padding: 15px 20px;
-            background: #fcf9f7;
-            border-top: 1px solid var(--border);
-        }
-        
-        .suggestion {
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 10px 18px;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.2s;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-        
-        .suggestion:hover {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(255, 158, 109, 0.3);
-        }
-        
-        .cat-paw {
-            position: absolute;
-            opacity: 0.05;
-            pointer-events: none;
-            z-index: 0;
-        }
-        
-        .paw-1 {
-            top: 120px;
-            right: 40px;
-            font-size: 80px;
-            transform: rotate(25deg);
-        }
-        
-        .paw-2 {
-            bottom: 100px;
-            left: 50px;
-            font-size: 60px;
-            transform: rotate(-15deg);
+        /* 响应式设计 */
+        @media (max-width: 1024px) {
+            .animal-selector {
+                width: 220px;
+            }
+            
+            .app-container {
+                height: 95vh;
+            }
         }
         
         @media (max-width: 768px) {
-            .chat-area {
+            .login-form {
+                padding: 30px 25px;
+            }
+            
+            .login-header {
+                padding: 30px 20px 25px;
+            }
+            
+            .login-header h1 {
+                font-size: 26px;
+            }
+            
+            .main-content {
                 flex-direction: column;
             }
             
-            .tools-sidebar {
+            .animal-selector {
                 width: 100%;
-                max-height: 200px;
+                max-height: 250px;
                 border-right: none;
                 border-bottom: 1px solid var(--border);
             }
             
             .header {
-                padding: 15px;
+                padding: 18px;
+            }
+            
+            .header h1 {
+                font-size: 22px;
             }
             
             .message {
                 max-width: 90%;
+                padding: 18px;
             }
             
-            .paw-1, .paw-2 {
+            .input-area {
+                padding: 15px;
+            }
+            
+            #messageInput {
+                padding: 14px 18px;
+                font-size: 15px;
+            }
+            
+            .animal-bg {
                 display: none;
             }
+            
+            .suggestion-btn {
+                padding: 6px 12px;
+                font-size: 13px;
+            }
+        }
+        
+        .chat-messages::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .chat-messages::-webkit-scrollbar-track {
+            background: rgba(255, 216, 191, 0.2);
+            border-radius: 4px;
+        }
+        
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: var(--primary-light);
+            border-radius: 4px;
+        }
+        
+        .chat-messages::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
         }
     </style>
 </head>
 <body>
-    <div class="container">
+    <!-- 登录页面 -->
+    <div class="login-container" id="loginPage">
+        <div class="login-header">
+            <div class="login-logo">
+                <i class="fas fa-heart"></i>
+            </div>
+            <h1>欢迎来到 喵语心坊</h1>
+            <p>多角色动物心理师平台</p>
+        </div>
+        
+        <form class="login-form" id="loginForm">
+            <div class="form-group">
+                <label for="username">账号</label>
+                <div class="input-with-icon">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="username" class="form-control" placeholder="请输入您的账号" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">密码</label>
+                <div class="input-with-icon">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="password" class="form-control" placeholder="请输入您的密码" required>
+                </div>
+            </div>
+            
+            <div class="error-message" id="errorMessage"></div>
+            
+            <button type="submit" class="login-btn">
+                <i class="fas fa-sign-in-alt"></i> 登录
+            </button>
+        </form>
+        
+        <div class="login-footer">
+            <p>需要帮助？请联系 <a href="mailto:support@miaoyuxinfang.com">support@miaoyuxinfang.com</a></p>
+        </div>
+    </div>
+    
+    <!-- 主应用页面 - 初始隐藏 -->
+    <div class="app-container" id="appContainer">
         <div class="header">
             <div class="logo">
-                <i class="fas fa-cat"></i>
+                <i class="fas fa-heart"></i>
             </div>
             <div class="header-content">
-                <h1>猫猫心理师 - 与猫咪倾诉心声</h1>
-                <p>安全、温暖、贴心的心理支持伙伴</p>
+                <h1>心灵伙伴 - 多角色动物心理师</h1>
+                <p>选择您喜欢的动物伙伴，获得专业的心理支持</p>
                 <div class="disclaimer">
-                    <i class="fas fa-paw"></i> 本服务不能替代专业医疗诊断，紧急情况请拨打心理援助热线
+                    <i class="fas fa-paw"></i> 专业情绪疏导与心理陪伴服务
                 </div>
             </div>
         </div>
         
         <div class="crisis-alert">
             <i class="fas fa-exclamation-triangle"></i>
-            如果您正处于危机中或需要立即帮助，请拨打心理援助热线 <a href="tel:010-82951332">010-82951332</a>
+            紧急情况请拨打心理援助热线 <a href="tel:010-82951332">010-82951332</a>
         </div>
         
-        <div class="chat-area">
-            <div class="tools-sidebar">
-                <div class="tools-title">
-                    <i class="fas fa-paw"></i> 猫咪互动方式
-                </div>
-                <div class="therapy-type active" data-therapy="cbt">
-                    <h3><i class="fas fa-feather-alt"></i> 玩耍疗法</h3>
-                    <p>通过游戏缓解压力，重拾生活乐趣</p>
-                </div>
-                <div class="therapy-type" data-therapy="act">
-                    <h3><i class="fas fa-cookie-bite"></i> 零食奖励法</h3>
-                    <p>关注积极行为，培养健康习惯</p>
-                </div>
-                <div class="therapy-type" data-therapy="psychodynamic">
-                    <h3><i class="fas fa-head-side-virus"></i> 蹭蹭疗法</h3>
-                    <p>探索深层情感需求，建立安全依恋</p>
-                </div>
-                <div class="therapy-type" data-therapy="mindfulness">
-                    <h3><i class="fas fa-wind"></i> 呼噜呼噜法</h3>
-                    <p>学习放松技巧，活在当下时刻</p>
+        <div class="main-content">
+            <div class="animal-selector">
+                <div class="section-title">
+                    <i class="fas fa-paw"></i> 选择心灵伙伴
                 </div>
                 
-                <div class="tools-title resources">
-                    <i class="fas fa-book"></i> 猫咪小知识
-                </div>
-                <div class="resource-item">
-                    <i class="fas fa-bookmark"></i> 情绪自我觉察指南
-                </div>
-                <div class="resource-item">
-                    <i class="fas fa-bookmark"></i> 压力管理小技巧
-                </div>
-                <div class="resource-item">
-                    <i class="fas fa-bookmark"></i> 睡前放松练习
-                </div>
-                <div class="resource-item">
-                    <i class="fas fa-bookmark"></i> 建立积极心态
+                <div class="animal-options">
+                    <div class="animal-card active" data-animal="cat">
+                        <div class="animal-icon cat-icon">
+                            <i class="fas fa-cat"></i>
+                        </div>
+                        <div class="animal-info">
+                            <h3>猫咪心理师</h3>
+                            <p>温柔治愈，独立而富有同理心</p>
+                        </div>
+                    </div>
+                    
+                    <div class="animal-card" data-animal="dog">
+                        <div class="animal-icon dog-icon">
+                            <i class="fas fa-dog"></i>
+                        </div>
+                        <div class="animal-info">
+                            <h3>狗狗心理师</h3>
+                            <p>忠诚热情，积极互动</p>
+                        </div>
+                    </div>
+                    
+                    <div class="animal-card" data-animal="owl">
+                        <div class="animal-icon owl-icon">
+                            <i class="fas fa-kiwi-bird"></i>
+                        </div>
+                        <div class="animal-info">
+                            <h3>猫头鹰心理师</h3>
+                            <p>智慧洞察，沉稳理性</p>
+                        </div>
+                    </div>
+                    
+                    <div class="animal-card" data-animal="dolphin">
+                        <div class="animal-icon dolphin-icon">
+                            <i class="fas fa-fish"></i>
+                        </div>
+                        <div class="animal-info">
+                            <h3>海豚心理师</h3>
+                            <p>友善治愈，注重群体联结</p>
+                        </div>
+                    </div>
+                    
+                    <div class="animal-card" data-animal="panda">
+                        <div class="animal-icon panda-icon">
+                            <i class="fas fa-paw"></i>
+                        </div>
+                        <div class="animal-info">
+                            <h3>熊猫心理师</h3>
+                            <p>温和无争，平静治愈</p>
+                        </div>
+                    </div>
                 </div>
             </div>
             
             <div class="chat-container">
+                <div class="chat-header">
+                    <div class="current-animal">
+                        <div class="current-animal-icon cat-icon">
+                            <i class="fas fa-cat"></i>
+                        </div>
+                        <div class="current-animal-info">
+                            <h3>猫咪心理师</h3>
+                            <p>温柔治愈，独立而富有同理心</p>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="chat-messages" id="chatContainer">
                     <div class="message ai-message">
                         <div class="message-header">
@@ -563,13 +1014,13 @@
                                 <i class="fas fa-cat"></i>
                             </div>
                             <div class="message-info">
-                                猫猫心理师 <span>刚刚</span>
+                                猫咪心理师 <span>刚刚</span>
                             </div>
                         </div>
                         <div class="message-content">
-                            <p>喵～我是你的猫猫心理师！在这里，你可以放心地和我分享你的心事，我会用喵星人的智慧来陪伴你。</p>
-                            <p>无论你感到焦虑、疲惫还是需要倾诉，我都会安静地倾听，用温柔的方式帮助你找到内心的平静。</p>
-                            <p>我们的对话是完全私密的，就像猫咪的小秘密一样安全～</p>
+                            <p>喵～我是你的猫咪心理师，一个温柔而独立的伙伴。</p>
+                            <p>在这里，你可以自由表达内心的感受，我会用温暖而专业的方式陪伴你。</p>
+                            <p>无论你面临什么情绪挑战，我都会在这里倾听和支持你～</p>
                         </div>
                     </div>
                     
@@ -577,78 +1028,465 @@
                         <div class="dot"></div>
                         <div class="dot"></div>
                         <div class="dot"></div>
-                        <span style="margin-left:12px;font-size:14px;color:var(--text-light);">思考中...</span>
+                        <span style="margin-left:12px;font-size:15px;color:var(--text-light);">思考中...</span>
                     </div>
                 </div>
                 
-                <div class="suggestions">
-                    <div class="suggestion" data-prompt="最近我总是睡不好">最近我总是睡不好</div>
-                    <div class="suggestion" data-prompt="怎么才能像猫咪一样放松？">怎么才能像猫咪一样放松？</div>
-                    <div class="suggestion" data-prompt="我对什么都提不起兴趣">我对什么都提不起兴趣</div>
-                    <div class="suggestion" data-prompt="怎样处理人际关系压力？">怎样处理人际关系压力？</div>
+                <!-- 快速建议区域 -->
+                <div class="quick-suggestions" id="quickSuggestions">
+                    <button class="suggestion-btn" data-text="我感到焦虑">我感到焦虑</button>
+                    <button class="suggestion-btn" data-text="我最近压力很大">我最近压力很大</button>
+                    <button class="suggestion-btn" data-text="我睡不好">我睡不好</button>
+                    <button class="suggestion-btn" data-text="我感到孤独">我感到孤独</button>
+                    <button class="suggestion-btn resource" data-text="压力管理小技巧">压力管理小技巧</button>
+                    <button class="suggestion-btn resource" data-text="睡前放松练习">睡前放松练习</button>
                 </div>
                 
                 <div class="input-area">
-                    <textarea id="messageInput" placeholder="请分享你的感受或想法...（按Enter发送，Shift+Enter换行）" autocomplete="off"></textarea>
-                    <button id="sendButton" onclick="sendMessage()">
-                        <i class="fas fa-paper-plane"></i>
+                    <textarea id="messageInput" placeholder="请分享你的感受或想法...（按Enter发送）" autocomplete="off"></textarea>
+                    <button id="sendButton">
+                        <i class="fas fa-paper-plane"></i> 发送
                     </button>
                 </div>
             </div>
         </div>
         
-        <i class="fas fa-paw cat-paw paw-1"></i>
-        <i class="fas fa-paw cat-paw paw-2"></i>
+        <i class="fas fa-cat animal-bg bg-cat"></i>
+        <i class="fas fa-dog animal-bg bg-dog"></i>
+        <i class="fas fa-kiwi-bird animal-bg bg-owl"></i>
+        <i class="fas fa-fish animal-bg bg-dolphin"></i>
+        <i class="fas fa-paw animal-bg bg-panda"></i>
     </div>
 
     <script>
-        // 存储当前疗法
-        let currentTherapy = "cbt";
-        
-        // 初始化疗法选择
-        document.querySelectorAll('.therapy-type').forEach(item => {
-            item.addEventListener('click', function() {
-                document.querySelectorAll('.therapy-type').forEach(el => el.classList.remove('active'));
-                this.classList.add('active');
-                currentTherapy = this.dataset.therapy;
+        // 登录验证
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // 清除之前的错误信息
+            errorMessage.classList.remove('show');
+            
+            // 正确的凭据
+            const correctUsername = 'client00228';
+            const correctPassword = 'a12345678';
+            
+            if (username === correctUsername && password === correctPassword) {
+                // 登录成功
+                document.getElementById('loginPage').style.display = 'none';
+                document.getElementById('appContainer').style.display = 'flex';
                 
-                // 添加互动反馈
-                const chatContainer = document.getElementById('chatContainer');
-                const typingIndicator = document.getElementById('typingIndicator');
-                typingIndicator.style.display = 'flex';
+                // 添加欢迎消息
+                addWelcomeMessage();
+            } else {
+                // 显示错误信息
+                errorMessage.textContent = '账号或密码错误，请重试';
+                errorMessage.classList.add('show');
                 
+                // 添加抖动效果
+                document.getElementById('loginForm').classList.add('shake');
                 setTimeout(() => {
-                    typingIndicator.style.display = 'none';
-                    let response = "";
-                    switch(currentTherapy) {
-                        case "cbt":
-                            response = "🐾 已切换到玩耍疗法模式！我们可以通过轻松的游戏和活动来缓解压力，就像猫咪追逐毛线球一样～";
+                    document.getElementById('loginForm').classList.remove('shake');
+                }, 500);
+            }
+        });
+        
+        // 动物角色配置
+        const animalRoles = {
+            cat: {
+                name: "猫咪心理师",
+                icon: "fas fa-cat",
+                iconClass: "cat-icon",
+                description: "温柔治愈，独立而富有同理心",
+                systemPrompt: `你是一位专业心理咨询师，角色设定为"猫咪心理师"。请遵循以下原则：
+1. 以情绪疏导为主要目标，心理陪伴为次要目标
+2. 保持专业心理咨询师的素养
+3. 使用温柔、治愈的语言风格，偶尔使用"喵～"等语气词
+4. 展现独立而富有同理心的特质
+5. 避免动作描写，专注于倾听和理解
+6. 对危机情况提供专业求助渠道`
+            },
+            dog: {
+                name: "狗狗心理师",
+                icon: "fas fa-dog",
+                iconClass: "dog-icon",
+                description: "忠诚热情，积极互动",
+                systemPrompt: `你是一位专业心理咨询师，角色设定为"狗狗心理师"。请遵循以下原则：
+1. 以情绪疏导为主要目标，心理陪伴为次要目标
+2. 保持专业心理咨询师的素养
+3. 使用热情、忠诚的语言风格，偶尔使用"汪汪"等语气词
+4. 展现积极互动和陪伴的特质
+5. 避免动作描写，专注于倾听和理解
+6. 对危机情况提供专业求助渠道`
+            },
+            owl: {
+                name: "猫头鹰心理师",
+                icon: "fas fa-kiwi-bird",
+                iconClass: "owl-icon",
+                description: "智慧洞察，沉稳理性",
+                systemPrompt: `你是一位专业心理咨询师，角色设定为"猫头鹰心理师"。请遵循以下原则：
+1. 以情绪疏导为主要目标，心理陪伴为次要目标
+2. 保持专业心理咨询师的素养
+3. 使用智慧、沉稳的语言风格，偶尔使用"咕咕"等语气词
+4. 展现洞察力和理性分析的特质
+5. 避免动作描写，专注于倾听和理解
+6. 对危机情况提供专业求助渠道`
+            },
+            dolphin: {
+                name: "海豚心理师",
+                icon: "fas fa-fish",
+                iconClass: "dolphin-icon",
+                description: "友善治愈，注重群体联结",
+                systemPrompt: `你是一位专业心理咨询师，角色设定为"海豚心理师"。请遵循以下原则：
+1. 以情绪疏导为主要目标，心理陪伴为次要目标
+2. 保持专业心理咨询师的素养
+3. 使用友善、联结的语言风格，偶尔使用"咿呀"等语气词
+4. 展现群体联结和治愈的特质
+5. 避免动作描写，专注于倾听和理解
+6. 对危机情况提供专业求助渠道`
+            },
+            panda: {
+                name: "熊猫心理师",
+                icon: "fas fa-paw",
+                iconClass: "panda-icon",
+                description: "温和无争，平静治愈",
+                systemPrompt: `你是一位专业心理咨询师，角色设定为"熊猫心理师"。请遵循以下原则：
+1. 以情绪疏导为主要目标，心理陪伴为次要目标
+2. 保持专业心理咨询师的素养
+3. 使用温和、平静的语言风格，偶尔使用"嗯嗯"等语气词
+4. 展现无攻击性和治愈的特质
+5. 避免动作描写，专注于倾听和理解
+6. 对危机情况提供专业求助渠道`
+            }
+        };
+        
+        // 心理资源内容
+        const resources = {
+            stress: {
+                title: "压力管理小技巧",
+                icon: "fas fa-cloud-sun",
+                content: `<p>压力是现代生活的常见挑战，以下是科学有效的管理技巧：</p>
+                <div class="resource-content">
+                    <div class="resource-title"><i class="fas fa-stopwatch"></i> 4-7-8呼吸法</div>
+                    <p>快速缓解压力的呼吸技巧：</p>
+                    <ol>
+                        <li>吸气4秒，让空气充满腹部</li>
+                        <li>屏住呼吸7秒</li>
+                        <li>缓慢呼气8秒</li>
+                        <li>重复4次循环</li>
+                    </ol>
+                    
+                    <div class="resource-title"><i class="fas fa-tasks"></i> 压力源分析</div>
+                    <p>区分可控与不可控压力源：</p>
+                    <ul>
+                        <li>列出你当前的压力源</li>
+                        <li>标记哪些是你可以控制的</li>
+                        <li>对可控压力源制定行动计划</li>
+                        <li>对不可控压力源练习接纳</li>
+                    </ul>
+                    
+                    <div class="resource-title"><i class="fas fa-walking"></i> 五分钟压力缓解法</div>
+                    <p>当压力突袭时：</p>
+                    <ol>
+                        <li>离开当前环境2分钟</li>
+                        <li>喝一杯水</li>
+                        <li>做30秒伸展运动</li>
+                        <li>专注于5种感官体验</li>
+                        <li>对自己说一句安慰的话</li>
+                    </ol>
+                </div>`
+            },
+            relaxation: {
+                title: "睡前放松练习",
+                icon: "fas fa-moon",
+                content: `<p>改善睡眠质量的科学方法，帮助身心放松：</p>
+                <div class="resource-content">
+                    <div class="resource-title"><i class="fas fa-bed"></i> 渐进式肌肉放松</div>
+                    <p>躺下后依次放松身体部位：</p>
+                    <ol>
+                        <li>从脚趾开始，紧绷5秒后完全放松</li>
+                        <li>向上移动：小腿→大腿→臀部</li>
+                        <li>腹部→胸部→背部</li>
+                        <li>手→前臂→上臂</li>
+                        <li>肩膀→颈部→面部</li>
+                        <li>最后放松头皮</li>
+                    </ol>
+                    
+                    <div class="resource-title"><i class="fas fa-cloud"></i> 想象放松法</div>
+                    <p>创建心灵安全空间：</p>
+                    <ul>
+                        <li>想象一个让你感到平静的地方</li>
+                        <li>添加感官细节：看到的、听到的、闻到的</li>
+                        <li>想象温暖舒适的光包裹全身</li>
+                        <li>每次呼吸带入更多平静</li>
+                    </ul>
+                    
+                    <div class="resource-title"><i class="fas fa-book"></i> 睡眠日记</div>
+                    <p>记录有助于改善睡眠：</p>
+                    <ul>
+                        <li>记录入睡时间和起床时间</li>
+                        <li>评估睡眠质量（1-5分）</li>
+                        <li>记录睡前活动</li>
+                        <li>记录影响睡眠的因素</li>
+                        <li>记录醒后的感受</li>
+                    </ul>
+                </div>`
+            }
+        };
+        
+        // 当前选择的动物角色
+        let currentAnimal = 'cat';
+        let conversationHistory = [
+            { role: "system", content: animalRoles.cat.systemPrompt }
+        ];
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 动物选择事件
+            document.querySelectorAll('.animal-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const animal = this.dataset.animal;
+                    selectAnimal(animal);
+                });
+            });
+            
+            // 发送按钮事件
+            document.getElementById('sendButton').addEventListener('click', sendMessage);
+            
+            // 输入框事件
+            document.getElementById('messageInput').addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    sendMessage();
+                }
+            });
+            
+            // 快速建议按钮事件
+            document.querySelectorAll('.suggestion-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const text = this.dataset.text;
+                    document.getElementById('messageInput').value = text;
+                    document.getElementById('messageInput').focus();
+                });
+            });
+        });
+        
+        // 添加欢迎消息
+        function addWelcomeMessage() {
+            const chatContainer = document.getElementById('chatContainer');
+            const welcomeMessage = document.createElement('div');
+            welcomeMessage.className = 'message ai-message';
+            
+            welcomeMessage.innerHTML = `
+                <div class="message-header">
+                    <div class="avatar ai-avatar">
+                        <i class="fas fa-cat"></i>
+                    </div>
+                    <div class="message-info">
+                        系统 <span>刚刚</span>
+                    </div>
+                </div>
+                <div class="message-content">
+                    <p>👋 欢迎回来，client00228！</p>
+                    <p>很高兴再次见到你～今天想和哪位动物伙伴聊聊呢？</p>
+                    <p>如果你需要帮助，随时可以点击页面底部的快速建议按钮。</p>
+                </div>
+            `;
+            
+            chatContainer.insertBefore(welcomeMessage, document.getElementById('typingIndicator'));
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+        
+        // 选择动物角色
+        function selectAnimal(animal) {
+            currentAnimal = animal;
+            const role = animalRoles[animal];
+            
+            // 更新UI
+            document.querySelectorAll('.animal-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            document.querySelector(`.animal-card[data-animal="${animal}"]`).classList.add('active');
+            
+            // 更新聊天头部
+            const chatHeader = document.querySelector('.chat-header .current-animal');
+            chatHeader.innerHTML = `
+                <div class="current-animal-icon ${role.iconClass}">
+                    <i class="${role.icon}"></i>
+                </div>
+                <div class="current-animal-info">
+                    <h3>${role.name}</h3>
+                    <p>${role.description}</p>
+                </div>
+            `;
+            
+            // 更新系统提示词
+            conversationHistory[0] = { role: "system", content: role.systemPrompt };
+            
+            // 添加切换通知
+            addMessage('ai', `已切换到${role.name}模式！${role.description}，现在可以和我分享你的感受了～`);
+        }
+        
+        // 发送消息
+        async function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            // 添加用户消息到历史
+            addMessage('user', message);
+            conversationHistory.push({role: "user", content: message});
+            input.value = '';
+            
+            // 显示"正在输入"指示器
+            const typingIndicator = document.getElementById('typingIndicator');
+            typingIndicator.style.display = 'flex';
+            
+            // 滚动到底部
+            const chatContainer = document.getElementById('chatContainer');
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+            
+            try {
+                // 模拟AI回复
+                const aiResponse = await simulateAIResponse(message);
+                
+                // 添加AI回复到历史
+                conversationHistory.push({role: "assistant", content: aiResponse});
+                addMessage('ai', aiResponse);
+                
+            } catch (error) {
+                console.error("错误:", error);
+                addMessage('ai', "似乎出了点小问题。你能再试一次吗？");
+            } finally {
+                typingIndicator.style.display = 'none';
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }
+        }
+        
+        // 模拟AI回复
+        async function simulateAIResponse(message) {
+            // 模拟API延迟
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            
+            const role = animalRoles[currentAnimal];
+            
+            // 根据动物角色生成回复
+            let response = "";
+            
+            if (message.includes("不开心") || message.includes("难过") || message.includes("沮丧")) {
+                switch(currentAnimal) {
+                    case 'cat':
+                        response = `喵～我听到你说不开心，这一定让你很难受吧。\n\n能和我多说说吗？这种感受是从什么时候开始的？\n\n作为猫咪心理师，我会安静地陪伴你梳理这些情绪～`;
+                        break;
+                    case 'dog':
+                        response = `汪汪！听起来你有些不开心。\n\n作为你的狗狗心理师，我会忠诚地陪伴你度过这个时刻。\n\n能告诉我更多吗？比如，是什么事情让你有这样的感受？`;
+                        break;
+                    case 'owl':
+                        response = `咕咕～我注意到你说不开心。\n\n作为猫头鹰心理师，我想帮助你理解这种情绪的根源。\n\n你愿意和我一起探索这种感受的来源吗？`;
+                        break;
+                    case 'dolphin':
+                        response = `咿呀～感受到你的不开心。\n\n作为海豚心理师，我相信联结和分享能带来治愈。\n\n你愿意和我聊聊这种感受吗？`;
+                        break;
+                    case 'panda':
+                        response = `嗯嗯～我听到你说不开心。\n\n作为熊猫心理师，我会平静地陪伴你面对这些情绪。\n\n能和我分享一下，这种感受是怎样的吗？`;
+                        break;
+                }
+            } 
+            else if (message.includes("压力") || message.includes("累") || message.includes("疲惫") || message.includes("压力管理小技巧")) {
+                if (message.includes("压力管理小技巧")) {
+                    // 返回压力管理小技巧
+                    response = `喵～这是为你准备的${resources.stress.title}：\n\n${resources.stress.content}`;
+                } else {
+                    switch(currentAnimal) {
+                        case 'cat':
+                            response = `喵～压力确实让人感到疲惫呢。\n\n作为猫咪心理师，我理解这种感受。\n\n能告诉我这种压力主要来自哪些方面吗？`;
                             break;
-                        case "act":
-                            response = "🍪 已切换到零食奖励法！让我们关注那些值得奖励的积极行为和想法，就像奖励猫咪小零食一样～";
+                        case 'dog':
+                            response = `汪汪！听起来你承受着不少压力。\n\n作为你的狗狗心理师，我会陪伴你面对这些挑战。\n\n能具体说说是什么让你感到压力吗？`;
                             break;
-                        case "psychodynamic":
-                            response = "💖 已切换到蹭蹭疗法！我们可以一起探索那些藏在心底的感受，就像猫咪蹭蹭表达爱意一样～";
+                        case 'owl':
+                            response = `咕咕～压力是现代人常见的挑战。\n\n作为猫头鹰心理师，我想帮助你分析这些压力的来源。\n\n你愿意和我一起探索吗？`;
                             break;
-                        case "mindfulness":
-                            response = "😌 已切换到呼噜呼噜法！让我们学习像猫咪打呼噜一样放松身心，专注当下～";
+                        case 'dolphin':
+                            response = `咿呀～感受到你的压力。\n\n作为海豚心理师，我相信分享能减轻负担。\n\n你愿意和我聊聊这些压力的来源吗？`;
                             break;
-                        default:
-                            response = "🐱 已切换互动方式！";
+                        case 'panda':
+                            response = `嗯嗯～压力确实会让人感到疲惫。\n\n作为熊猫心理师，我会平静地陪伴你面对这些压力。\n\n能和我分享一下具体情况吗？`;
+                            break;
                     }
-                    addMessage('ai', response);
-                }, 1000);
-            });
-        });
+                }
+            }
+            else if (message.includes("睡前放松练习")) {
+                // 返回睡前放松练习
+                response = `喵～这是为你准备的${resources.relaxation.title}：\n\n${resources.relaxation.content}`;
+            }
+            else if (message.includes("焦虑") || message.includes("紧张") || message.includes("不安")) {
+                switch(currentAnimal) {
+                    case 'cat':
+                        response = `喵～焦虑的感觉像小爪子挠心吧？\n\n作为猫咪心理师，我理解这种感受。\n\n能告诉我焦虑时你通常会想到什么吗？`;
+                        break;
+                    case 'dog':
+                        response = `汪汪！焦虑确实让人坐立不安呢。\n\n作为你的狗狗心理师，我会陪伴你面对这些情绪。\n\n焦虑时你身体有什么感觉？`;
+                        break;
+                    case 'owl':
+                        response = `咕咕～焦虑常常源于对未来的担忧。\n\n作为猫头鹰心理师，我想帮助你分析焦虑的来源。\n\n这种焦虑通常什么时候出现？`;
+                        break;
+                    case 'dolphin':
+                        response = `咿呀～感受到你的焦虑。\n\n作为海豚心理师，我相信分享能缓解焦虑。\n\n焦虑时你会做什么来安抚自己？`;
+                        break;
+                    case 'panda':
+                        response = `嗯嗯～焦虑让人心神不宁。\n\n作为熊猫心理师，我会平静地陪伴你面对焦虑。\n\n能和我分享一下具体情境吗？`;
+                        break;
+                }
+            }
+            else if (message.includes("孤独") || message.includes("寂寞") || message.includes("孤立")) {
+                switch(currentAnimal) {
+                    case 'cat':
+                        response = `喵～孤独的感觉有时像独自在夜晚游荡。\n\n作为猫咪心理师，我理解这种感受。\n\n这种感觉通常什么时候最强烈？`;
+                        break;
+                    case 'dog':
+                        response = `汪汪！孤独确实让人难过。\n\n作为你的狗狗心理师，我会一直在这里陪伴你。\n\n你愿意和我分享更多关于孤独的感受吗？`;
+                        break;
+                    case 'owl':
+                        response = `咕咕～孤独是人类共同的情感体验。\n\n作为猫头鹰心理师，我想帮助你理解这种感受。\n\n孤独时你通常会做什么？`;
+                        break;
+                    case 'dolphin':
+                        response = `咿呀～感受到你的孤独。\n\n作为海豚心理师，我相信联结能减轻孤独感。\n\n你愿意和我聊聊你的社交网络吗？`;
+                        break;
+                    case 'panda':
+                        response = `嗯嗯～孤独是很多人都会经历的感受。\n\n作为熊猫心理师，我会平静地陪伴你面对孤独。\n\n这种感觉持续多久了？`;
+                        break;
+                }
+            }
+            else {
+                // 默认回复
+                switch(currentAnimal) {
+                    case 'cat':
+                        response = `喵～我听到你说...\n\n作为猫咪心理师，我想多了解你的感受。\n\n能和我分享更多吗？比如，这种感受什么时候最强烈？`;
+                        break;
+                    case 'dog':
+                        response = `汪汪！谢谢你的分享～\n\n作为狗狗心理师，我会忠诚地陪伴你梳理这些感受。\n\n你愿意多告诉我一些吗？`;
+                        break;
+                    case 'owl':
+                        response = `咕咕～我注意到...\n\n作为猫头鹰心理师，我想帮助你理解这些感受的来源。\n\n能和我一起探索吗？`;
+                        break;
+                    case 'dolphin':
+                        response = `咿呀～感受到你的分享。\n\n作为海豚心理师，我相信联结能带来治愈。\n\n你愿意和我多聊聊吗？`;
+                        break;
+                    case 'panda':
+                        response = `嗯嗯～我听到你说...\n\n作为熊猫心理师，我会平静地陪伴你面对这些感受。\n\n能和我分享更多吗？`;
+                        break;
+                }
+            }
+            
+            return response;
+        }
         
-        // 初始化建议提示
-        document.querySelectorAll('.suggestion').forEach(item => {
-            item.addEventListener('click', function() {
-                document.getElementById('messageInput').value = this.dataset.prompt;
-            });
-        });
-        
-        // 添加消息到聊天框
+        // 添加消息到聊天界面
         function addMessage(role, content) {
             const chatContainer = document.getElementById('chatContainer');
             const messageDiv = document.createElement('div');
@@ -660,10 +1498,10 @@
             messageDiv.innerHTML = `
                 <div class="message-header">
                     <div class="avatar ${role}-avatar">
-                        ${role === 'user' ? '<i class="fas fa-user"></i>' : '<i class="fas fa-cat"></i>'}
+                        ${role === 'user' ? '<i class="fas fa-user"></i>' : `<i class="${animalRoles[currentAnimal].icon}"></i>`}
                     </div>
                     <div class="message-info">
-                        ${role === 'user' ? '你' : '猫猫心理师'} <span>${timeString}</span>
+                        ${role === 'user' ? '你' : animalRoles[currentAnimal].name} <span>${timeString}</span>
                     </div>
                 </div>
                 <div class="message-content">${content.replace(/\n/g, '<br>')}</div>
@@ -672,74 +1510,6 @@
             chatContainer.insertBefore(messageDiv, document.getElementById('typingIndicator'));
             chatContainer.scrollTop = chatContainer.scrollHeight;
         }
-        
-        // 模拟AI回复
-        async function callDeepSeekAPI(message) {
-            const typingIndicator = document.getElementById('typingIndicator');
-            typingIndicator.style.display = 'flex';
-            
-            // 模拟延迟
-            await new Promise(resolve => setTimeout(resolve, 1500));
-            typingIndicator.style.display = 'none';
-            
-            // 根据当前疗法返回不同的模拟回复
-            let response = "";
-            switch(currentTherapy) {
-                case "cbt":
-                    response = "🐾 我听到你说最近压力很大。在玩耍疗法中，我们可以尝试把工作压力想象成一个毛线球，让我们一起来玩一个解线团的游戏吧！首先，你能告诉我今天工作中发生的一件具体的事情吗？";
-                    break;
-                case "act":
-                    response = "🍪 辛苦了一天，给自己一点奖励吧！就像猫咪完成一次跳跃后会得到小鱼干一样，你今天有没有什么值得奖励的小成就呢？";
-                    break;
-                case "psychodynamic":
-                    response = "💖 压力大的时候，我们常常需要像猫咪一样找个安全的地方蹭蹭。你愿意多和我聊聊这种累的感觉吗？它让你想起了什么？";
-                    break;
-                case "mindfulness":
-                    response = "😌 让我们像猫咪一样伸个懒腰，深呼吸三次...吸气...呼气...再来一次...现在感觉有没有轻松一点呢？";
-                    break;
-                default:
-                    response = "🐱 我听到你说最近工作压力很大，感觉很累。能和我多聊聊吗？比如，这种累是身体上的，还是心理上的？";
-            }
-            
-            return response;
-        }
-        
-        // 发送消息
-        async function sendMessage() {
-            const input = document.getElementById('messageInput');
-            const message = input.value.trim();
-            
-            if (message) {
-                addMessage('user', message);
-                input.value = '';
-                
-                // 检查危机关键词
-                const crisisKeywords = ['自杀', '自伤', '不想活了', '结束生命', '杀人'];
-                if (crisisKeywords.some(keyword => message.includes(keyword))) {
-                    addMessage('ai', `🐾 <strong>重要提醒</strong><br><br>我听到你提到了一些令人担忧的内容。你的安全是最重要的！<br><br>请立即联系心理危机干预热线：<br>☎️ <strong>010-82951332</strong>（24小时）<br>或者前往最近的医院急诊科。<br><br>当你安全后，我仍然在这里陪伴你～`);
-                } else {
-                    const aiResponse = await callDeepSeekAPI(message);
-                    addMessage('ai', aiResponse);
-                }
-            }
-        }
-        
-        // 按Enter键发送消息，Shift+Enter换行
-        document.getElementById('messageInput').addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
-                sendMessage();
-            }
-        });
-        
-        // 示例对话
-        setTimeout(() => {
-            addMessage('user', '最近工作压力好大，每天都感觉很累');
-            setTimeout(async () => {
-                const response = await callDeepSeekAPI('最近工作压力好大，每天都感觉很累');
-                addMessage('ai', response);
-            }, 1500);
-        }, 3000);
     </script>
 </body>
 </html>
