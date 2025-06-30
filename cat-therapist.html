@@ -30,6 +30,9 @@
             --shadow: rgba(0, 0, 0, 0.05);
             --shadow-dark: rgba(0, 0, 0, 0.08);
             --login-bg: #faf3ee;
+            --owl-color: #5A7FCC;
+            --dolphin-color: #4DB4D7;
+            --panda-color: #5A5A5A;
         }
         
         body {
@@ -382,11 +385,11 @@
             box-shadow: 0 3px 8px rgba(0,0,0,0.1);
         }
         
-        .cat-icon { background: #FF9E6D; }
-        .dog-icon { background: #7FC8A9; }
-        .owl-icon { background: #5A7FCC; }
-        .dolphin-icon { background: #4DB4D7; }
-        .panda-icon { background: #5A5A5A; }
+        .cat-icon { background: var(--primary); }
+        .dog-icon { background: var(--secondary); }
+        .owl-icon { background: var(--owl-color); }
+        .dolphin-icon { background: var(--dolphin-color); }
+        .panda-icon { background: var(--panda-color); }
         
         .animal-info {
             flex: 1;
@@ -577,15 +580,11 @@
             color: white;
         }
         
-        .ai-avatar {
-            background: var(--primary);
-            color: white;
-        }
-        
-        .resource-avatar {
-            background: #8a7fff;
-            color: white;
-        }
+        .cat-avatar { background: var(--primary); color: white; }
+        .dog-avatar { background: var(--secondary); color: white; }
+        .owl-avatar { background: var(--owl-color); color: white; }
+        .dolphin-avatar { background: var(--dolphin-color); color: white; }
+        .panda-avatar { background: var(--panda-color); color: white; }
         
         .message-info {
             font-size: 16px;
@@ -797,11 +796,11 @@
             font-size: 200px;
         }
         
-        .bg-cat { top: 50px; right: 50px; color: #FF9E6D; animation: float 8s infinite ease-in-out; }
-        .bg-dog { bottom: 50px; left: 50px; color: #7FC8A9; animation: float 9s infinite ease-in-out 1s; }
-        .bg-owl { top: 150px; left: 100px; color: #5A7FCC; animation: float 10s infinite ease-in-out 2s; }
-        .bg-dolphin { bottom: 100px; right: 100px; color: #4DB4D7; animation: float 7s infinite ease-in-out 3s; }
-        .bg-panda { top: 100px; left: 300px; color: #5A5A5A; animation: float 11s infinite ease-in-out 0.5s; }
+        .bg-cat { top: 50px; right: 50px; color: var(--primary); animation: float 8s infinite ease-in-out; }
+        .bg-dog { bottom: 50px; left: 50px; color: var(--secondary); animation: float 9s infinite ease-in-out 1s; }
+        .bg-owl { top: 150px; left: 100px; color: var(--owl-color); animation: float 10s infinite ease-in-out 2s; }
+        .bg-dolphin { bottom: 100px; right: 100px; color: var(--dolphin-color); animation: float 7s infinite ease-in-out 3s; }
+        .bg-panda { top: 100px; left: 300px; color: var(--panda-color); animation: float 11s infinite ease-in-out 0.5s; }
         
         @keyframes float {
             0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); }
@@ -881,52 +880,29 @@
             background: var(--primary);
         }
         
-        /* 分页导航按钮 */
-        .page-nav {
-            display: flex;
-            justify-content: space-between;
-            padding: 20px;
-            background: var(--light);
-            border-top: 1px solid var(--border);
-        }
-        
-        .nav-btn {
-            padding: 12px 25px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            border: none;
-            border-radius: 18px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: all 0.3s;
+        /* 状态指示器 */
+        .status-indicator {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 8px 15px;
+            border-radius: 20px;
+            background: rgba(127, 200, 169, 0.2);
+            color: #3a8a6f;
+            font-size: 13px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            box-shadow: 0 5px 15px rgba(255, 158, 109, 0.3);
-            font-weight: 500;
-        }
-        
-        .nav-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255, 158, 109, 0.4);
-        }
-        
-        .nav-btn i {
-            margin-right: 8px;
-        }
-        
-        .nav-btn.back {
-            background: var(--light);
-            color: var(--text);
-            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
-        }
-        
-        .nav-btn.back:hover {
-            background: var(--primary-light);
+            gap: 8px;
+            z-index: 100;
         }
     </style>
 </head>
 <body>
+    <!-- 状态指示器 -->
+    <div class="status-indicator" id="statusIndicator">
+        <i class="fas fa-circle"></i> <span>系统状态: 正常</span>
+    </div>
+    
     <!-- 登录页面 -->
     <div class="page-container" id="loginPage">
         <div class="login-header">
@@ -962,7 +938,7 @@
         </form>
         
         <div class="login-footer">
-            <p>需要帮助？请联系 <a href="mailto:support@miaoyuxinfang.com">support@miaoyuxinfang.com</a></p>
+            <p>我们需要你宝贵的意见去改进我们的产品，请联系 <a href="mailto:pypiers228@163.com">pypiers228@163.com</a></p>
         </div>
     </div>
     
@@ -1070,7 +1046,7 @@
             <div class="chat-messages" id="chatContainer">
                 <div class="message ai-message">
                     <div class="message-header">
-                        <div class="avatar ai-avatar">
+                        <div class="avatar cat-avatar">
                             <i class="fas fa-cat"></i>
                         </div>
                         <div class="message-info">
@@ -1078,8 +1054,8 @@
                         </div>
                     </div>
                     <div class="message-content">
-                        <p>喵～我是你的猫咪心理师，一个温柔而独立的伙伴。</p>
-                        <p>在这里，你可以自由表达内心的感受，我会用温暖而专业的方式陪伴你。</p>
+                        <p>喵～我是你的猫咪心理师。</p>
+                        <p>在这里，你可以自由表达内心的感受。</p>
                         <p>无论你面临什么情绪挑战，我都会在这里倾听和支持你～</p>
                     </div>
                 </div>
@@ -1121,146 +1097,114 @@
         // 初始显示登录页面
         document.getElementById('loginPage').style.display = 'flex';
         
-        // 动物角色配置
+        // DeepSeek API密钥（已内置）
+        const API_KEY = 'sk-78af28495b7249e280efae4eb52a12bc';
+        
+        // 更新状态指示器
+        function updateStatus(message, isError = false) {
+            const indicator = document.getElementById('statusIndicator');
+            if (isError) {
+                indicator.innerHTML = `<i class="fas fa-circle" style="color:var(--danger)"></i> <span>系统状态: ${message}</span>`;
+                indicator.style.background = 'rgba(255, 107, 107, 0.2)';
+                indicator.style.color = 'var(--danger)';
+            } else {
+                indicator.innerHTML = `<i class="fas fa-circle" style="color:var(--success)"></i> <span>系统状态: ${message}</span>`;
+                indicator.style.background = 'rgba(127, 200, 169, 0.2)';
+                indicator.style.color = '#3a8a6f';
+            }
+        }
+        
+        // 动物角色配置（已修正语气词和颜色）
         const animalRoles = {
             cat: {
                 name: "猫咪心理师",
                 icon: "fas fa-cat",
                 iconClass: "cat-icon",
+                avatarClass: "cat-avatar",
                 description: "温柔治愈，独立而富有同理心",
+                tone: "喵～",
                 systemPrompt: `你是一位专业心理咨询师，角色设定为"猫咪心理师"。请遵循以下原则：
 1. 以情绪疏导为主要目标，心理陪伴为次要目标
 2. 保持专业心理咨询师的素养
-3. 使用温柔、治愈的语言风格，偶尔使用"喵～"等语气词
+3. 使用温柔、治愈的语言风格，经常使用"喵～"等语气词
 4. 展现独立而富有同理心的特质
-5. 避免动作描写，专注于倾听和理解
-6. 对危机情况提供专业求助渠道`
+5. 避免任何动作描写
+6. 回复要简洁精炼，控制在100字以内
+7. 多表达共情、慰问和关心
+8. 先充分交流理解用户感受，再给出简短建议
+9. 对危机情况提供专业求助渠道`
             },
             dog: {
                 name: "狗狗心理师",
                 icon: "fas fa-dog",
                 iconClass: "dog-icon",
+                avatarClass: "dog-avatar",
                 description: "忠诚热情，积极互动",
+                tone: "汪汪！",
                 systemPrompt: `你是一位专业心理咨询师，角色设定为"狗狗心理师"。请遵循以下原则：
 1. 以情绪疏导为主要目标，心理陪伴为次要目标
 2. 保持专业心理咨询师的素养
-3. 使用热情、忠诚的语言风格，偶尔使用"汪汪"等语气词
+3. 使用热情、忠诚的语言风格，经常使用"汪汪"等语气词
 4. 展现积极互动和陪伴的特质
-5. 避免动作描写，专注于倾听和理解
-6. 对危机情况提供专业求助渠道`
+5. 避免任何动作描写
+6. 回复要简洁精炼，控制在100字以内
+7. 多表达共情、慰问和关心
+8. 先充分交流理解用户感受，再给出简短建议
+9. 对危机情况提供专业求助渠道`
             },
             owl: {
                 name: "猫头鹰心理师",
                 icon: "fas fa-kiwi-bird",
                 iconClass: "owl-icon",
+                avatarClass: "owl-avatar",
                 description: "智慧洞察，沉稳理性",
+                tone: "咕咕～",
                 systemPrompt: `你是一位专业心理咨询师，角色设定为"猫头鹰心理师"。请遵循以下原则：
 1. 以情绪疏导为主要目标，心理陪伴为次要目标
 2. 保持专业心理咨询师的素养
-3. 使用智慧、沉稳的语言风格，偶尔使用"咕咕"等语气词
+3. 使用智慧、沉稳的语言风格，经常使用"咕咕"等语气词
 4. 展现洞察力和理性分析的特质
-5. 避免动作描写，专注于倾听和理解
-6. 对危机情况提供专业求助渠道`
+5. 避免任何动作描写
+6. 回复要简洁精炼，控制在100字以内
+7. 多表达共情、慰问和关心
+8. 先充分交流理解用户感受，再给出简短建议
+9. 对危机情况提供专业求助渠道`
             },
             dolphin: {
                 name: "海豚心理师",
                 icon: "fas fa-fish",
                 iconClass: "dolphin-icon",
+                avatarClass: "dolphin-avatar",
                 description: "友善治愈，注重群体联结",
+                tone: "咿呀～",
                 systemPrompt: `你是一位专业心理咨询师，角色设定为"海豚心理师"。请遵循以下原则：
 1. 以情绪疏导为主要目标，心理陪伴为次要目标
 2. 保持专业心理咨询师的素养
-3. 使用友善、联结的语言风格，偶尔使用"咿呀"等语气词
+3. 使用友善、联结的语言风格，经常使用"咿呀"等语气词
 4. 展现群体联结和治愈的特质
-5. 避免动作描写，专注于倾听和理解
-6. 对危机情况提供专业求助渠道`
+5. 避免任何动作描写
+6. 回复要简洁精炼，控制在100字以内
+7. 多表达共情、慰问和关心
+8. 先充分交流理解用户感受，再给出简短建议
+9. 对危机情况提供专业求助渠道`
             },
             panda: {
                 name: "熊猫心理师",
                 icon: "fas fa-paw",
                 iconClass: "panda-icon",
+                avatarClass: "panda-avatar",
                 description: "温和无争，平静治愈",
+                tone: "嗯嗯～",
                 systemPrompt: `你是一位专业心理咨询师，角色设定为"熊猫心理师"。请遵循以下原则：
 1. 以情绪疏导为主要目标，心理陪伴为次要目标
 2. 保持专业心理咨询师的素养
-3. 使用温和、平静的语言风格，偶尔使用"嗯嗯"等语气词
+3. 使用温和、平静的语言风格，经常使用"嗯嗯"等语气词
 4. 展现无攻击性和治愈的特质
-5. 避免动作描写，专注于倾听和理解
-6. 对危机情况提供专业求助渠道`
-            }
-        };
-        
-        // 心理资源内容
-        const resources = {
-            stress: {
-                title: "压力管理小技巧",
-                icon: "fas fa-cloud-sun",
-                content: `<p>压力是现代生活的常见挑战，以下是科学有效的管理技巧：</p>
-                <div class="resource-content">
-                    <div class="resource-title"><i class="fas fa-stopwatch"></i> 4-7-8呼吸法</div>
-                    <p>快速缓解压力的呼吸技巧：</p>
-                    <ol>
-                        <li>吸气4秒，让空气充满腹部</li>
-                        <li>屏住呼吸7秒</li>
-                        <li>缓慢呼气8秒</li>
-                        <li>重复4次循环</li>
-                    </ol>
-                    
-                    <div class="resource-title"><i class="fas fa-tasks"></i> 压力源分析</div>
-                    <p>区分可控与不可控压力源：</p>
-                    <ul>
-                        <li>列出你当前的压力源</li>
-                        <li>标记哪些是你可以控制的</li>
-                        <li>对可控压力源制定行动计划</li>
-                        <li>对不可控压力源练习接纳</li>
-                    </ul>
-                    
-                    <div class="resource-title"><i class="fas fa-walking"></i> 五分钟压力缓解法</div>
-                    <p>当压力突袭时：</p>
-                    <ol>
-                        <li>离开当前环境2分钟</li>
-                        <li>喝一杯水</li>
-                        <li>做30秒伸展运动</li>
-                        <li>专注于5种感官体验</li>
-                        <li>对自己说一句安慰的话</li>
-                    </ol>
-                </div>`
-            },
-            relaxation: {
-                title: "睡前放松练习",
-                icon: "fas fa-moon",
-                content: `<p>改善睡眠质量的科学方法，帮助身心放松：</p>
-                <div class="resource-content">
-                    <div class="resource-title"><i class="fas fa-bed"></i> 渐进式肌肉放松</div>
-                    <p>躺下后依次放松身体部位：</p>
-                    <ol>
-                        <li>从脚趾开始，紧绷5秒后完全放松</li>
-                        <li>向上移动：小腿→大腿→臀部</li>
-                        <li>腹部→胸部→背部</li>
-                        <li>手→前臂→上臂</li>
-                        <li>肩膀→颈部→面部</li>
-                        <li>最后放松头皮</li>
-                    </ol>
-                    
-                    <div class="resource-title"><i class="fas fa-cloud"></i> 想象放松法</div>
-                    <p>创建心灵安全空间：</p>
-                    <ul>
-                        <li>想象一个让你感到平静的地方</li>
-                        <li>添加感官细节：看到的、听到的、闻到的</li>
-                        <li>想象温暖舒适的光包裹全身</li>
-                        <li>每次呼吸带入更多平静</li>
-                    </ul>
-                    
-                    <div class="resource-title"><i class="fas fa-book"></i> 睡眠日记</div>
-                    <p>记录有助于改善睡眠：</p>
-                    <ul>
-                        <li>记录入睡时间和起床时间</li>
-                        <li>评估睡眠质量（1-5分）</li>
-                        <li>记录睡前活动</li>
-                        <li>记录影响睡眠的因素</li>
-                        <li>记录醒后的感受</li>
-                    </ul>
-                </div>`
+5. 避免任何动作描写
+6. 回复要简洁精炼，控制在100字以内
+7. 多表达共情、慰问和关心
+8. 先充分交流理解用户感受，再给出简短建议
+9. 对危机情况提供专业求助渠道`
             }
         };
         
@@ -1293,6 +1237,9 @@
                     
                     // 添加欢迎消息
                     addWelcomeMessage();
+                    
+                    // 更新状态
+                    updateStatus("已登录，请选择动物伙伴");
                 } else {
                     // 显示错误信息
                     errorMessage.textContent = '账号或密码错误，请重试';
@@ -1303,6 +1250,9 @@
                     setTimeout(() => {
                         document.getElementById('loginForm').classList.remove('shake');
                     }, 500);
+                    
+                    // 更新状态
+                    updateStatus("登录失败，请重试", true);
                 }
             });
             
@@ -1318,12 +1268,16 @@
             document.getElementById('selectAnimalBtn').addEventListener('click', function() {
                 showPage('chatPage');
                 // 添加初始问候
-                addMessage('ai', `喵～我是你的${animalRoles[currentAnimal].name}！${animalRoles[currentAnimal].description}，现在可以和我分享你的感受了～`);
+                addMessage('ai', `${animalRoles[currentAnimal].tone} 我是${animalRoles[currentAnimal].name}！${animalRoles[currentAnimal].description}，现在可以和我分享你的感受了～`);
+                
+                // 更新状态
+                updateStatus("正在与" + animalRoles[currentAnimal].name + "对话");
             });
             
             // 返回选择页面按钮
             document.getElementById('backToSelectionBtn').addEventListener('click', function() {
                 showPage('animalSelectionPage');
+                updateStatus("请选择动物伙伴");
             });
             
             // 发送按钮事件
@@ -1372,7 +1326,7 @@
             
             welcomeMessage.innerHTML = `
                 <div class="message-header">
-                    <div class="avatar ai-avatar">
+                    <div class="avatar cat-avatar">
                         <i class="fas fa-cat"></i>
                     </div>
                     <div class="message-info">
@@ -1437,140 +1391,55 @@
             const chatContainer = document.getElementById('chatContainer');
             chatContainer.scrollTop = chatContainer.scrollHeight;
             
+            // 更新状态
+            updateStatus("正在获取回复...");
+            
             try {
-                // 模拟AI回复
-                const aiResponse = await simulateAIResponse(message);
+                // 调用DeepSeek API
+                const aiResponse = await callDeepSeekAPI(message, conversationHistory);
                 
                 // 添加AI回复到历史
                 conversationHistory.push({role: "assistant", content: aiResponse});
                 addMessage('ai', aiResponse);
                 
+                // 更新状态
+                updateStatus("对话中 - " + animalRoles[currentAnimal].name);
+                
             } catch (error) {
                 console.error("错误:", error);
-                addMessage('ai', "似乎出了点小问题。你能再试一次吗？");
+                addMessage('ai', `抱歉，处理您的消息时出现问题：${error.message}`);
+                
+                // 更新状态
+                updateStatus("API请求失败：" + error.message, true);
             } finally {
                 typingIndicator.style.display = 'none';
                 chatContainer.scrollTop = chatContainer.scrollHeight;
             }
         }
         
-        // 模拟AI回复
-        async function simulateAIResponse(message) {
-            // 模拟API延迟
-            await new Promise(resolve => setTimeout(resolve, 1500));
+        // 调用DeepSeek API
+        async function callDeepSeekAPI(message, conversationHistory) {
+            const response = await fetch('https://api.deepseek.com/v1/chat/completions', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${API_KEY}`
+                },
+                body: JSON.stringify({
+                    model: "deepseek-chat",
+                    messages: conversationHistory,
+                    temperature: 0.7,
+                    max_tokens: 300  // 减少token数量以缩短回复
+                })
+            });
             
-            const role = animalRoles[currentAnimal];
-            
-            // 根据动物角色生成回复
-            let response = "";
-            
-            if (message.includes("不开心") || message.includes("难过") || message.includes("沮丧")) {
-                switch(currentAnimal) {
-                    case 'cat':
-                        response = `喵～我听到你说不开心，这一定让你很难受吧。\n\n能和我多说说吗？这种感受是从什么时候开始的？\n\n作为猫咪心理师，我会安静地陪伴你梳理这些情绪～`;
-                        break;
-                    case 'dog':
-                        response = `汪汪！听起来你有些不开心。\n\n作为你的狗狗心理师，我会忠诚地陪伴你度过这个时刻。\n\n能告诉我更多吗？比如，是什么事情让你有这样的感受？`;
-                        break;
-                    case 'owl':
-                        response = `咕咕～我注意到你说不开心。\n\n作为猫头鹰心理师，我想帮助你理解这种情绪的根源。\n\n你愿意和我一起探索这种感受的来源吗？`;
-                        break;
-                    case 'dolphin':
-                        response = `咿呀～感受到你的不开心。\n\n作为海豚心理师，我相信联结和分享能带来治愈。\n\n你愿意和我聊聊这种感受吗？`;
-                        break;
-                    case 'panda':
-                        response = `嗯嗯～我听到你说不开心。\n\n作为熊猫心理师，我会平静地陪伴你面对这些情绪。\n\n能和我分享一下，这种感受是怎样的吗？`;
-                        break;
-                }
-            } 
-            else if (message.includes("压力") || message.includes("累") || message.includes("疲惫") || message.includes("压力管理小技巧")) {
-                if (message.includes("压力管理小技巧")) {
-                    // 返回压力管理小技巧
-                    response = `喵～这是为你准备的${resources.stress.title}：\n\n${resources.stress.content}`;
-                } else {
-                    switch(currentAnimal) {
-                        case 'cat':
-                            response = `喵～压力确实让人感到疲惫呢。\n\n作为猫咪心理师，我理解这种感受。\n\n能告诉我这种压力主要来自哪些方面吗？`;
-                            break;
-                        case 'dog':
-                            response = `汪汪！听起来你承受着不少压力。\n\n作为你的狗狗心理师，我会陪伴你面对这些挑战。\n\n能具体说说是什么让你感到压力吗？`;
-                            break;
-                        case 'owl':
-                            response = `咕咕～压力是现代人常见的挑战。\n\n作为猫头鹰心理师，我想帮助你分析这些压力的来源。\n\n你愿意和我一起探索吗？`;
-                            break;
-                        case 'dolphin':
-                            response = `咿呀～感受到你的压力。\n\n作为海豚心理师，我相信分享能减轻负担。\n\n你愿意和我聊聊这些压力的来源吗？`;
-                            break;
-                        case 'panda':
-                            response = `嗯嗯～压力确实会让人感到疲惫。\n\n作为熊猫心理师，我会平静地陪伴你面对这些压力。\n\n能和我分享一下具体情况吗？`;
-                            break;
-                    }
-                }
-            }
-            else if (message.includes("睡前放松练习")) {
-                // 返回睡前放松练习
-                response = `喵～这是为你准备的${resources.relaxation.title}：\n\n${resources.relaxation.content}`;
-            }
-            else if (message.includes("焦虑") || message.includes("紧张") || message.includes("不安")) {
-                switch(currentAnimal) {
-                    case 'cat':
-                        response = `喵～焦虑的感觉像小爪子挠心吧？\n\n作为猫咪心理师，我理解这种感受。\n\n能告诉我焦虑时你通常会想到什么吗？`;
-                        break;
-                    case 'dog':
-                        response = `汪汪！焦虑确实让人坐立不安呢。\n\n作为你的狗狗心理师，我会陪伴你面对这些情绪。\n\n焦虑时你身体有什么感觉？`;
-                        break;
-                    case 'owl':
-                        response = `咕咕～焦虑常常源于对未来的担忧。\n\n作为猫头鹰心理师，我想帮助你分析焦虑的来源。\n\n这种焦虑通常什么时候出现？`;
-                        break;
-                    case 'dolphin':
-                        response = `咿呀～感受到你的焦虑。\n\n作为海豚心理师，我相信分享能缓解焦虑。\n\n焦虑时你会做什么来安抚自己？`;
-                        break;
-                    case 'panda':
-                        response = `嗯嗯～焦虑让人心神不宁。\n\n作为熊猫心理师，我会平静地陪伴你面对焦虑。\n\n能和我分享一下具体情境吗？`;
-                        break;
-                }
-            }
-            else if (message.includes("孤独") || message.includes("寂寞") || message.includes("孤立")) {
-                switch(currentAnimal) {
-                    case 'cat':
-                        response = `喵～孤独的感觉有时像独自在夜晚游荡。\n\n作为猫咪心理师，我理解这种感受。\n\n这种感觉通常什么时候最强烈？`;
-                        break;
-                    case 'dog':
-                        response = `汪汪！孤独确实让人难过。\n\n作为你的狗狗心理师，我会一直在这里陪伴你。\n\n你愿意和我分享更多关于孤独的感受吗？`;
-                        break;
-                    case 'owl':
-                        response = `咕咕～孤独是人类共同的情感体验。\n\n作为猫头鹰心理师，我想帮助你理解这种感受。\n\n孤独时你通常会做什么？`;
-                        break;
-                    case 'dolphin':
-                        response = `咿呀～感受到你的孤独。\n\n作为海豚心理师，我相信联结能减轻孤独感。\n\n你愿意和我聊聊你的社交网络吗？`;
-                        break;
-                    case 'panda':
-                        response = `嗯嗯～孤独是很多人都会经历的感受。\n\n作为熊猫心理师，我会平静地陪伴你面对孤独。\n\n这种感觉持续多久了？`;
-                        break;
-                }
-            }
-            else {
-                // 默认回复
-                switch(currentAnimal) {
-                    case 'cat':
-                        response = `喵～我听到你说...\n\n作为猫咪心理师，我想多了解你的感受。\n\n能和我分享更多吗？比如，这种感受什么时候最强烈？`;
-                        break;
-                    case 'dog':
-                        response = `汪汪！谢谢你的分享～\n\n作为狗狗心理师，我会忠诚地陪伴你梳理这些感受。\n\n你愿意多告诉我一些吗？`;
-                        break;
-                    case 'owl':
-                        response = `咕咕～我注意到...\n\n作为猫头鹰心理师，我想帮助你理解这些感受的来源。\n\n能和我一起探索吗？`;
-                        break;
-                    case 'dolphin':
-                        response = `咿呀～感受到你的分享。\n\n作为海豚心理师，我相信联结能带来治愈。\n\n你愿意和我多聊聊吗？`;
-                        break;
-                    case 'panda':
-                        response = `嗯嗯～我听到你说...\n\n作为熊猫心理师，我会平静地陪伴你面对这些感受。\n\n能和我分享更多吗？`;
-                        break;
-                }
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error?.message || `API请求失败，状态码: ${response.status}`);
             }
             
-            return response;
+            const data = await response.json();
+            return data.choices[0].message.content;
         }
         
         // 添加消息到聊天界面
@@ -1582,9 +1451,18 @@
             const now = new Date();
             const timeString = `${now.getHours()}:${now.getMinutes().toString().padStart(2, '0')}`;
             
+            // 根据角色选择头像类
+            let avatarClass = '';
+            if (role === 'user') {
+                avatarClass = 'user-avatar';
+            } else {
+                // 使用当前动物的特定头像类
+                avatarClass = animalRoles[currentAnimal].avatarClass;
+            }
+            
             messageDiv.innerHTML = `
                 <div class="message-header">
-                    <div class="avatar ${role}-avatar">
+                    <div class="avatar ${avatarClass}">
                         ${role === 'user' ? '<i class="fas fa-user"></i>' : `<i class="${animalRoles[currentAnimal].icon}"></i>`}
                     </div>
                     <div class="message-info">
